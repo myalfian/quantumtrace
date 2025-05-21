@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
@@ -379,3 +380,6 @@ export default function ApprovalWorkflows() {
     </div>
   );
 }
+=======
+... (file content here) ...
+>>>>>>> bc89eace20afea15e84765f55420225a62189f67

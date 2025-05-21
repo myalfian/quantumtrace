@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -80,3 +81,6 @@ The app will be available at [http://localhost:4173](http://localhost:4173).
 **Note:**
 - If you need to customize environment variables, edit the `.env` file and ensure the `env_file` line in `docker-compose.yml` is uncommented.
 - No additional configuration is required unless your environment or cloud services require it.
+=======
+... (file content here) ...
+>>>>>>> bc89eace20afea15e84765f55420225a62189f67

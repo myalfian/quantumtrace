@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
@@ -47,3 +48,6 @@ if (isConfigValid) {
 }
 
 export default app;
+=======
+... (file content here) ...
+>>>>>>> bc89eace20afea15e84765f55420225a62189f67
