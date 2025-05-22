@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
@@ -172,6 +171,3 @@ export default function Auth() {
     </div>
   );
 }
-=======
-... (file content here) ...
->>>>>>> bc89eace20afea15e84765f55420225a62189f67

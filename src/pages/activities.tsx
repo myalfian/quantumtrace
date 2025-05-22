@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '../lib/supabase';
@@ -72,7 +71,4 @@ export default function ActivitiesPage() {
       )}
     </div>
   );
-} 
-=======
-... (file content here) ...
->>>>>>> bc89eace20afea15e84765f55420225a62189f67
+}
