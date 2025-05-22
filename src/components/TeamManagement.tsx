@@ -179,7 +179,7 @@ export default function TeamManagement() {
       <div className="bg-white shadow rounded-lg p-6">
         <h2 className="text-lg font-semibold mb-4">Create New Team</h2>
         <form onSubmit={handleCreateTeam} className="space-y-4">
-          <div>
+        <div>
             <label htmlFor="teamName" className="block text-sm font-medium text-gray-700">
               Team Name
             </label>
@@ -191,7 +191,7 @@ export default function TeamManagement() {
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               required
             />
-          </div>
+            </div>
           <div>
             <label htmlFor="teamDescription" className="block text-sm font-medium text-gray-700">
               Description
@@ -211,7 +211,7 @@ export default function TeamManagement() {
             Create Team
           </button>
         </form>
-      </div>
+        </div>
 
       <div className="bg-white shadow rounded-lg p-6">
         <h2 className="text-lg font-semibold mb-4">Your Teams</h2>
@@ -219,7 +219,7 @@ export default function TeamManagement() {
           {teams.map((team) => (
             <div key={team.id} className="border rounded-lg p-4">
               <div className="flex justify-between items-start mb-4">
-                <div>
+        <div>
                   <h3 className="text-lg font-medium">{team.name}</h3>
                   <p className="text-gray-600 mt-1">{team.description}</p>
                 </div>
@@ -235,8 +235,8 @@ export default function TeamManagement() {
                 <div className="mt-4 space-y-4">
                   <form onSubmit={handleAddMember} className="flex gap-4">
                     <div className="flex-1">
-                      <input
-                        type="email"
+            <input
+              type="email"
                         placeholder="Member's email"
                         value={newMember.email}
                         onChange={(e) => setNewMember({ ...newMember, email: e.target.value })}
@@ -260,8 +260,8 @@ export default function TeamManagement() {
                       className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
                       Add Member
-                    </button>
-                  </form>
+            </button>
+          </form>
 
                   <div className="space-y-2">
                     {team.members.map((member) => (

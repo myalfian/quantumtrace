@@ -28,7 +28,7 @@ export default function Reminders() {
 
   useEffect(() => {
     if (currentUser) {
-      fetchReminders();
+    fetchReminders();
     }
   }, [currentUser]);
 
@@ -170,7 +170,7 @@ export default function Reminders() {
             Add Reminder
           </button>
         </form>
-      </div>
+        </div>
 
       <div className="bg-white shadow rounded-lg p-6">
         <h2 className="text-lg font-semibold mb-4">Your Reminders</h2>
@@ -181,7 +181,7 @@ export default function Reminders() {
               className="border rounded-lg p-4 hover:shadow-md transition-shadow"
             >
               <div className="flex justify-between items-start">
-                <div>
+              <div>
                   <h3 className="font-medium">{reminder.title}</h3>
                   <p className="text-gray-600 mt-1">{reminder.description}</p>
                   <div className="mt-2 space-x-2">

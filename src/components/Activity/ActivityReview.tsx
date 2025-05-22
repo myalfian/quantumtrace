@@ -8,7 +8,6 @@ export default function ActivityReview() {
   const [error, setError] = useState<string | null>(null);
   const [activities, setActivities] = useState<DailyActivity[]>([]);
   const [filterDate, setFilterDate] = useState(format(new Date(), 'yyyy-MM-dd'));
-  const [selectedActivity, setSelectedActivity] = useState<DailyActivity | null>(null);
   const [comment, setComment] = useState('');
 
   useEffect(() => {
@@ -18,10 +17,10 @@ export default function ActivityReview() {
   const fetchActivities = async () => {
     try {
       const { data, error } = await supabase
-        .from('daily_activities')
+        .from('activities')
         .select(`
           *,
-          profiles:user_id (
+          user:user_id (
             full_name,
             email
           )
@@ -41,11 +40,11 @@ export default function ActivityReview() {
   const handleStatusUpdate = async (activityId: string, status: 'approved' | 'rejected') => {
     try {
       const { error } = await supabase
-        .from('daily_activities')
+        .from('activities')
         .update({
           status,
-          supervisorComment: comment,
-          reviewedAt: new Date().toISOString(),
+          supervisor_comment: comment,
+          reviewed_at: new Date().toISOString()
         })
         .eq('id', activityId);
 
@@ -54,11 +53,11 @@ export default function ActivityReview() {
       setActivities(prev =>
         prev.map(activity =>
           activity.id === activityId
-            ? { ...activity, status, supervisorComment: comment }
+            ? { ...activity, status, supervisor_comment: comment, reviewed_at: new Date().toISOString() }
             : activity
         )
       );
-      setSelectedActivity(null);
+
       setComment('');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
@@ -99,8 +98,8 @@ export default function ActivityReview() {
           >
             <div className="flex justify-between items-start mb-4">
               <div>
-                <h3 className="font-medium">{activity.profiles?.full_name}</h3>
-                <p className="text-sm text-gray-500">{activity.profiles?.email}</p>
+                <h3 className="font-medium">{activity.user?.full_name || 'Unknown User'}</h3>
+                <p className="text-sm text-gray-500">{activity.user?.email || 'No email'}</p>
               </div>
               <span
                 className={`px-2 py-1 text-xs font-medium rounded-full ${
@@ -161,10 +160,10 @@ export default function ActivityReview() {
                 </div>
               )}
 
-              {activity.supervisorComment && (
+              {activity.supervisor_comment && (
                 <div className="mt-2 p-2 bg-gray-50 rounded">
                   <p className="text-sm text-gray-600">
-                    <span className="font-medium">Supervisor Comment:</span> {activity.supervisorComment}
+                    <span className="font-medium">Supervisor Comment:</span> {activity.supervisor_comment}
                   </p>
                 </div>
               )}
@@ -180,4 +179,4 @@ export default function ActivityReview() {
       </div>
     </div>
   );
-} 
+}

@@ -143,11 +143,11 @@ export default function ApprovalWorkflows() {
     <div className="space-y-6">
       <div className="bg-white shadow rounded-lg p-6">
         <h2 className="text-lg font-semibold mb-4">Pending Approvals</h2>
-        <div className="space-y-4">
+      <div className="space-y-4">
           {pendingRequests.map((request) => (
             <div key={request.id} className="border rounded-lg p-4">
               <div className="flex justify-between items-start">
-                <div>
+        <div>
                   <h3 className="font-medium">
                     {isLeaveRequest(request) ? 'Leave Request' : 'Daily Activity'}
                   </h3>
@@ -169,8 +169,8 @@ export default function ApprovalWorkflows() {
                     Submitted by: {request.profiles?.full_name || 'Unknown'}<br />
                     Created on: {format(new Date(request.created_at), 'MMM d, yyyy h:mm a')}
                   </p>
-                </div>
-                <div className="flex gap-2">
+              </div>
+              <div className="flex gap-2">
                   <button
                     onClick={() => handleApproveRequest(isLeaveRequest(request) ? 'leave' : 'activity', request.id)}
                     className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
@@ -183,7 +183,7 @@ export default function ApprovalWorkflows() {
                   >
                     Reject
                   </button>
-                </div>
+              </div>
               </div>
             </div>
           ))}

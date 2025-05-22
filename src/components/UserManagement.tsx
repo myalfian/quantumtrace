@@ -136,7 +136,7 @@ export default function UserManagement() {
       <div className="bg-white shadow rounded-lg p-6">
         <h2 className="text-lg font-semibold mb-4">Add New User</h2>
         <form onSubmit={handleCreateUser} className="space-y-4">
-          <div>
+        <div>
             <label htmlFor="userEmail" className="block text-sm font-medium text-gray-700">
               Email
             </label>
@@ -148,21 +148,21 @@ export default function UserManagement() {
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               required
             />
-          </div>
-          <div>
+        </div>
+        <div>
             <label htmlFor="userName" className="block text-sm font-medium text-gray-700">
               Full Name
             </label>
-            <input
+              <input
               type="text"
               id="userName"
               value={newUser.full_name}
               onChange={(e) => setNewUser({ ...newUser, full_name: e.target.value })}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               required
-            />
-          </div>
-          <div>
+              />
+            </div>
+            <div>
             <label htmlFor="userRole" className="block text-sm font-medium text-gray-700">
               Role
             </label>
@@ -172,18 +172,18 @@ export default function UserManagement() {
               onChange={(e) => setNewUser({ ...newUser, role: e.target.value as 'engineer' | 'supervisor' | 'admin' })}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             >
-              <option value="engineer">Engineer</option>
-              <option value="supervisor">Supervisor</option>
-              <option value="admin">Admin</option>
-            </select>
-          </div>
+                <option value="engineer">Engineer</option>
+                <option value="supervisor">Supervisor</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
           <button
             type="submit"
             className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
-            Add User
-          </button>
-        </form>
+              Add User
+            </button>
+          </form>
       </div>
 
       <div className="bg-white shadow rounded-lg p-6">

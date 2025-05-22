@@ -40,14 +40,20 @@ export interface ProjectUpdate {
 
 export interface DailyActivity {
   id: string;
-  userId: string;
-  date: Date;
+  user_id: string;
+  date: string;
   description: string;
   location: string;
   attachments: string[];
   status: 'pending' | 'approved' | 'rejected';
-  supervisorComment?: string;
-  createdAt: Date;
+  supervisor_comment?: string;
+  created_at: string;
+  updated_at: string;
+  reviewed_at?: string;
+  user?: {
+    full_name: string;
+    email: string;
+  };
   updatedAt: Date;
 }
 
@@ -84,4 +90,4 @@ export interface KPI {
   timeEfficiency: number;
   createdAt: Date;
   updatedAt: Date;
-} 
+}

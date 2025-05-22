@@ -9,7 +9,7 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      profiles: {
+  profiles: {
         Row: {
           id: string
           created_at: string
@@ -157,7 +157,7 @@ export type Database = {
           }
         ]
       }
-      projects: {
+  projects: {
         Row: {
           id: string
           created_at: string

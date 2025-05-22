@@ -8,10 +8,14 @@ export default function DailyActivityForm() {
   const [error, setError] = useState<string | null>(null);
   const [hasSubmittedToday, setHasSubmittedToday] = useState(false);
   const [activity, setActivity] = useState<DailyActivity | null>(null);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    description: string;
+    location: string;
+    attachments: string[];
+  }>({
     description: '',
     location: '',
-    attachments: [] as string[],
+    attachments: [],
   });
 
   useEffect(() => {
@@ -26,7 +30,7 @@ export default function DailyActivityForm() {
       if (!user) throw new Error('Not authenticated');
 
       const { data, error } = await supabase
-        .from('daily_activities')
+        .from('activities')
         .select('*')
         .eq('user_id', user.id)
         .eq('date', today)
@@ -36,10 +40,24 @@ export default function DailyActivityForm() {
 
       setHasSubmittedToday(!!data);
       if (data) {
-        setActivity(data);
+        const activityData: DailyActivity = {
+          id: data.id,
+          user_id: data.user_id,
+          date: data.date,
+          description: data.description,
+          location: data.location || '',
+          attachments: data.attachments || [],
+          status: data.status,
+          supervisor_comment: data.supervisor_comment,
+          created_at: data.created_at,
+          updated_at: data.updated_at,
+          reviewed_at: data.reviewed_at,
+          updatedAt: new Date(data.updated_at)
+        };
+        setActivity(activityData);
         setFormData({
           description: data.description,
-          location: data.location,
+          location: data.location || '',
           attachments: data.attachments || [],
         });
       }
@@ -63,19 +81,22 @@ export default function DailyActivityForm() {
         description: formData.description,
         location: formData.location,
         attachments: formData.attachments,
-        status: 'pending',
+        status: 'pending' as const,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+        updatedAt: new Date()
       };
 
       if (hasSubmittedToday) {
         const { error } = await supabase
-          .from('daily_activities')
+          .from('activities')
           .update(activityData)
           .eq('id', activity?.id);
 
         if (error) throw error;
       } else {
         const { error } = await supabase
-          .from('daily_activities')
+          .from('activities')
           .insert(activityData);
 
         if (error) throw error;
@@ -95,7 +116,7 @@ export default function DailyActivityForm() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error('Not authenticated');
 
-      const uploadedFiles = [];
+      const uploadedFiles: string[] = [];
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const fileExt = file.name.split('.').pop();
@@ -200,9 +221,9 @@ export default function DailyActivityForm() {
           <div className="p-4 bg-green-50 rounded-lg">
             <p className="text-green-700">
               Your activity has been approved by your supervisor.
-              {activity.supervisorComment && (
+              {activity.supervisor_comment && (
                 <span className="block mt-2">
-                  Comment: {activity.supervisorComment}
+                  Comment: {activity.supervisor_comment}
                 </span>
               )}
             </p>
@@ -213,9 +234,9 @@ export default function DailyActivityForm() {
           <div className="p-4 bg-red-50 rounded-lg">
             <p className="text-red-700">
               Your activity has been rejected by your supervisor.
-              {activity.supervisorComment && (
+              {activity.supervisor_comment && (
                 <span className="block mt-2">
-                  Comment: {activity.supervisorComment}
+                  Comment: {activity.supervisor_comment}
                 </span>
               )}
             </p>
@@ -235,4 +256,4 @@ export default function DailyActivityForm() {
       </form>
     </div>
   );
-} 
+}

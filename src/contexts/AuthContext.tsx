@@ -84,4 +84,4 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       {!loading && children}
     </AuthContext.Provider>
   );
-};
+}; 
