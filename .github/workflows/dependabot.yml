@@ -1,0 +1,40 @@
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    # Look for `package.json` and `lock` files in the `root` directory
+    directory: "/"
+    # Check for updates once a week
+    schedule:
+      interval: "weekly"
+    # Specify labels for pull requests
+    labels:
+      - "dependencies"
+      - "npm"
+    # Limit the number of open pull requests for version updates
+    open-pull-requests-limit: 10
+    # Group all minor and patch updates together
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+    # Set version update strategy
+    versioning-strategy: auto
+    # Allow up-to-date branches to be rebased
+    rebase-strategy: auto
+    # Specify reviewers for pull requests
+    reviewers:
+      - "myalfian"
+    # Specify assignees for pull requests
+    assignees:
+      - "myalfian"
+    # Set commit message preferences
+    commit-message:
+      prefix: "npm"
+      include: "scope"
+    # Set target branch
+    target-branch: "main"
+    # Set labels for security updates
+    security-updates-only: false
+    # Set labels for version updates
+    version-updates-only: false 
